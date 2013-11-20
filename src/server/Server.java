@@ -120,6 +120,7 @@ public class Server extends Thread {
 			System.exit(1);
 		} catch (SecurityException ex) {
 			System.out.println("Error! Unable to set enconding to ASCII.");
+			ex.printStackTrace();
 			System.exit(1);
 		}
     }
