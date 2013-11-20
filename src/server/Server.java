@@ -27,7 +27,7 @@ public class Server extends Thread {
      * 
      * @param port a port number which the Server is listening to in order to 
      * 		establish a socket connection to a client. The port number should 
-     * 		reside in the range of dynamic ports, i.e 49152 – 65535.
+     * 		reside in the range of dynamic ports, i.e 49152 ï¿½ 65535.
      */
     public Server(int port){
         this.port = port;
@@ -101,7 +101,8 @@ public class Server extends Thread {
      */
     public static void main(String[] args) {
     	try {
-			new LogSetup("logs/server.log", Level.ALL);
+    		System.setProperty("file.encoding", "US-ASCII");
+    		new LogSetup("logs/server.log", Level.ALL);
 			if(args.length != 1) {
 				System.out.println("Error! Invalid number of arguments!");
 				System.out.println("Usage: Server <port>!");
@@ -116,6 +117,9 @@ public class Server extends Thread {
 		} catch (NumberFormatException nfe) {
 			System.out.println("Error! Invalid argument <port>! Not a number!");
 			System.out.println("Usage: Server <port>!");
+			System.exit(1);
+		} catch (SecurityException ex) {
+			System.out.println("Error! Unable to set enconding to ASCII.");
 			System.exit(1);
 		}
     }
